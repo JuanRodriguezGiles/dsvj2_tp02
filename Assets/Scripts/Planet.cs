@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Planet : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Planet : MonoBehaviour
 
     void Start()
     {
+        gameObject.name = "Planet";
         orbitSpeed=Random.Range(0.5f, 1.5f);
         rotationSpeed = Random.Range(0.1f, 1.0f);
     }
