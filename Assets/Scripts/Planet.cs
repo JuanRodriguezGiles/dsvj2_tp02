@@ -5,15 +5,15 @@ using UnityEngine.Rendering;
 
 public class Planet : MonoBehaviour
 {
-    [SerializeField] [Range(0.5f, 2)] private float orbitSpeed;
+    [SerializeField] [Range(0.1f, 2)] private float orbitSpeed;
     [SerializeField] [Range(0.1f, 1)] private float rotationSpeed;
     [SerializeField] [Range(1, 100)] public float radius;
     [SerializeField] private bool sun;
     private float angle = 0;
-
     void Start()
     {
         gameObject.name = "Planet";
+        gameObject.tag = "Planet";
         orbitSpeed=Random.Range(0.5f, 1.5f);
         rotationSpeed = Random.Range(0.1f, 1.0f);
     }

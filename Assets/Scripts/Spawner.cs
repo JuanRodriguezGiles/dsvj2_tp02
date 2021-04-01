@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     public GameObject planetPrefab;
-    private List<Planet> generatedPlanets = new List<Planet>();
+    public List<Planet> generatedPlanets = new List<Planet>();
     public List<Material> materialPlanets;
-
     [Range(1, 15)] public int planetCount = 8;
     private float distanceBetweenPlanet = 2.0f;
     void Start()
-    {
+    { 
         for (int i = 0; i < planetCount; i++)
         {
             float distanceToCenter = 5 + i * distanceBetweenPlanet;
