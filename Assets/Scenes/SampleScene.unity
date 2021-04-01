@@ -259,7 +259,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetPrefab: {fileID: 4046554222446224183, guid: 8e6e550220f2a5843a7c7f3671636a18,
     type: 3}
-  planetCount: 1
+  materialPlanets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  planetCount: 8
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
