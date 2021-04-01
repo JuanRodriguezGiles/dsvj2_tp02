@@ -6,7 +6,7 @@ public class Ship : MonoBehaviour
     public float speed;
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Planet")
+        if (col.gameObject.tag == "Planet")
         {
             Material alphaMaterial = col.gameObject.GetComponent<Renderer>().material;
 
@@ -17,7 +17,7 @@ public class Ship : MonoBehaviour
     }
     void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.name == "Planet")
+        if (col.gameObject.tag == "Planet")
         {
             Material alphaMaterial = col.gameObject.GetComponent<Renderer>().material;
 

@@ -14,13 +14,33 @@ public class MyCamera : MonoBehaviour
     private Vector3 pos;
     private bool firstRun = true;
     private GameObject[] planets;
-    public float smoothTime = 0.1F;
-    private Vector3 velocity = Vector3.zero;
     public Vector3 offset;
     void Start()
     {
         GameTransforms.Add(GameObject.Find("Ship").transform);
         GameTransforms.Add(GameObject.Find("Sun").transform);
+    }
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Sun")
+        {
+            Material alphaMaterial = col.gameObject.GetComponent<Renderer>().material;
+
+            alphaMaterial.color = new Color(alphaMaterial.color.r, alphaMaterial.color.g, alphaMaterial.color.b, 0.5f);
+
+            col.gameObject.GetComponent<Renderer>().material = alphaMaterial;
+        }
+    }
+    void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.tag == "Sun")
+        {
+            Material alphaMaterial = col.gameObject.GetComponent<Renderer>().material;
+
+            alphaMaterial.color = new Color(alphaMaterial.color.r, alphaMaterial.color.g, alphaMaterial.color.b, 1.0f);
+
+            col.gameObject.GetComponent<Renderer>().material = alphaMaterial;
+        }
     }
     void LateUpdate()
     {
@@ -31,6 +51,7 @@ public class MyCamera : MonoBehaviour
             foreach (GameObject planet in planets)
                 GameTransforms.Add(planet.transform);
         }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             index--;
@@ -44,8 +65,7 @@ public class MyCamera : MonoBehaviour
                 index = GameTransforms.Count - 1;
         }
 
-        Vector3 desiredPosition = GameTransforms[index].localPosition + offset;
-        transform.localPosition = Vector3.SmoothDamp(transform.localPosition, desiredPosition, ref velocity, smoothTime);
-        transform.LookAt(GameTransforms[index]);
+        pos = GameTransforms[index].localPosition + offset;
+        transform.localPosition = pos;
     }
 }
