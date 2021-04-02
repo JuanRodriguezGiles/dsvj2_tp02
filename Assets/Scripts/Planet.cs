@@ -14,7 +14,7 @@ public class Planet : MonoBehaviour
     {
         gameObject.name = "Planet";
         gameObject.tag = "Planet";
-        orbitSpeed=Random.Range(0.5f, 1.5f);
+        orbitSpeed = Random.Range(0.5f, 1.5f);
         rotationSpeed = Random.Range(0.1f, 1.0f);
     }
     void Update()

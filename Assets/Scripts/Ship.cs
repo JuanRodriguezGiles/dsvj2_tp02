@@ -35,12 +35,6 @@ public class Ship : MonoBehaviour
         Vector3 directionVector3 = new Vector3(hor, 0, ver);
 
         transform.position += directionVector3 * speed * Time.deltaTime;
-
-        time += Time.deltaTime;
-        if (time > 10)
-        {
-            time = 0;
-        }
     }
 }
 
