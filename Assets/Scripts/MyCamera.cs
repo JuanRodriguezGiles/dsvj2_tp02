@@ -17,7 +17,7 @@ public class MyCamera : MonoBehaviour
     public Vector3 offset;
     void Start()
     {
-        GameTransforms.Add(GameObject.Find("Ship").transform);
+        GameTransforms.Add(GameObject.Find("Spaceship").transform);
         GameTransforms.Add(GameObject.Find("Sun").transform);
     }
     void OnTriggerEnter(Collider col)
@@ -57,12 +57,21 @@ public class MyCamera : MonoBehaviour
             index--;
             if (index < 0)
                 index = 0;
+            if (GameTransforms[index].tag == "Sun")
+                offset.z = -6f;
+            else
+                offset.z = -2f;
         }
+
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             index++;
             if (index > GameTransforms.Count - 1)
                 index = GameTransforms.Count - 1;
+            if (GameTransforms[index].tag == "Sun")
+                offset.z = -6f;
+            else
+                offset.z = -2f;
         }
 
         pos = GameTransforms[index].localPosition + offset;
