@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < planetCount; i++)
         {
-            float distanceToCenter = 5 + i * distanceBetweenPlanet;
+            float distanceToCenter = 5 + (i +1) * distanceBetweenPlanet;
 
             GameObject newPlanet = Instantiate(planetPrefab, new Vector3(distanceToCenter, 0, 0), Quaternion.identity);
             Planet planet = newPlanet.GetComponent<Planet>();
