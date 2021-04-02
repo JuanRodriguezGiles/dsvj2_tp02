@@ -4,9 +4,10 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     public float speed;
+    public float time = 0;
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Planet")
+        if (col.gameObject.tag == "Planet" || col.gameObject.tag == "Sun")
         {
             Material alphaMaterial = col.gameObject.GetComponent<Renderer>().material;
 
@@ -17,7 +18,7 @@ public class Ship : MonoBehaviour
     }
     void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.tag == "Planet")
+        if (col.gameObject.tag == "Planet" || col.gameObject.tag == "Sun")
         {
             Material alphaMaterial = col.gameObject.GetComponent<Renderer>().material;
 
@@ -34,6 +35,12 @@ public class Ship : MonoBehaviour
         Vector3 directionVector3 = new Vector3(hor, 0, ver);
 
         transform.position += directionVector3 * speed * Time.deltaTime;
+
+        time += Time.deltaTime;
+        if (time > 10)
+        {
+            time = 0;
+        }
     }
 }
 
