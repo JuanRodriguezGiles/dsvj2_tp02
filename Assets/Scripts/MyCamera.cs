@@ -9,12 +9,16 @@ using Vector3 = UnityEngine.Vector3;
 
 public class MyCamera : MonoBehaviour
 {
+    public Camera mainCamera;
+    public Camera shipCamera;
     public List<Transform> GameTransforms;
     private int index = 0;
     private Vector3 pos;
     private bool firstRun = true;
     private GameObject[] planets;
     public Vector3 offset;
+    //
+    public float SmoothFactor = 0.1f;
     void Start()
     {
         GameTransforms.Add(GameObject.Find("Spaceship").transform);
@@ -42,6 +46,7 @@ public class MyCamera : MonoBehaviour
             col.gameObject.GetComponent<Renderer>().material = alphaMaterial;
         }
     }
+
     void LateUpdate()
     {
         if (firstRun)
@@ -74,7 +79,17 @@ public class MyCamera : MonoBehaviour
                 offset.z = -2f;
         }
 
-        pos = GameTransforms[index].localPosition + offset;
-        transform.localPosition = pos;
+        if (GameTransforms[index].name != "Spaceship")
+        {
+            mainCamera.enabled = true;
+            shipCamera.enabled = false;
+            pos = GameTransforms[index].localPosition + offset;
+            transform.localPosition = pos;
+        }
+        else
+        {
+            mainCamera.enabled = false;
+            shipCamera.enabled = true;
+        }
     }
 }
