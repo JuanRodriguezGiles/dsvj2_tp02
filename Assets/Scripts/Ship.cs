@@ -6,8 +6,8 @@ public class Ship : MonoBehaviour
     public float speed;
     public float time = 0;
     //
-    public float fowardSpeed = 25f, strafeSpeed = 7.5f, hoverSpeed = 5f;
-    private float activeFowardSpeed, activeStrafeSpeed, activeHoverSpeed;
+    public float fowardSpeed = 25f, hoverSpeed = 5f;
+    private float activeFowardSpeed, activeHoverSpeed;
     private float fowardAcceleration = 2.5f, hoverAcceleration = 2f;
     public float lookRateSpeed = 90f;
     void OnTriggerEnter(Collider col)
@@ -39,6 +39,7 @@ public class Ship : MonoBehaviour
 
         //Vector3 directionVector3 = new Vector3(hor, 0, ver);
         //transform.position += directionVector3 * speed * Time.deltaTime;
+
         activeFowardSpeed = Mathf.Lerp(activeFowardSpeed, Input.GetAxisRaw("Vertical") * fowardSpeed,
             fowardAcceleration * Time.deltaTime);
         activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, Input.GetAxisRaw("Hover") * hoverSpeed,
