@@ -12,7 +12,8 @@ public class TrailController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxisRaw("Vertical") == -1)
+        if (Input.GetAxisRaw("Vertical") == -1 ||
+            (Input.GetAxisRaw("Horizontal") != 0 && Input.GetAxisRaw("Vertical") != 1)) 
         {
             trail = GetComponentInParent<TrailRenderer>();
             trail.enabled = false;
