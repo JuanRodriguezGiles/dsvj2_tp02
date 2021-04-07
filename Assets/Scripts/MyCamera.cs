@@ -84,7 +84,9 @@ public class MyCamera : MonoBehaviour
             mainCamera.enabled = true;
             shipCamera.enabled = false;
             pos = GameTransforms[index].localPosition + offset;
-            transform.localPosition = pos;
+           // transform.localPosition = pos;
+           transform.position = Vector3.Lerp(transform.position, pos, 1* Time.deltaTime);
+           transform.LookAt(GameTransforms[index]);
         }
         else
         {
