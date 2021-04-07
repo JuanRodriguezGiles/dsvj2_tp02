@@ -4,8 +4,8 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     public float speed;
-    public float time = 0;
-    //
+    public float resultAngle;
+    public float resultRealAngle;
     public float fowardSpeed = 25f, hoverSpeed = 5f;
     private float activeFowardSpeed, activeHoverSpeed;
     private float fowardAcceleration = 2.5f, hoverAcceleration = 2f;
@@ -37,8 +37,22 @@ public class Ship : MonoBehaviour
         //float hor = Input.GetAxis("Horizontal");
         //float ver = Input.GetAxis("Vertical");
 
-        //Vector3 directionVector3 = new Vector3(hor, 0, ver);
-        //transform.position += directionVector3 * speed * Time.deltaTime;
+        //Vector3 movement = new Vector3(hor, 0, ver) * speed;
+        //transform.position += movement * Time.deltaTime;
+
+        //Vector3 lastPosition = transform.position;
+
+        //Vector3 wantedPosition = transform.position + movement * Time.deltaTime;
+
+        //float anguloReal = RealAngle(lastPosition, wantedPosition);
+        //resultRealAngle = anguloReal;
+
+        //Quaternion currentRotation = transform.rotation;
+        //Quaternion newRotation = Quaternion.Euler(0, anguloReal, 0);
+        //Quaternion finalRotation = Quaternion.Slerp(currentRotation, newRotation, 1 * Time.deltaTime);
+
+        //if (Mathf.Abs(hor) > 0.001f || Mathf.Abs(ver) > 0.001f)
+        //    transform.rotation = finalRotation;
 
         activeFowardSpeed = Mathf.Lerp(activeFowardSpeed, Input.GetAxisRaw("Vertical") * fowardSpeed,
             fowardAcceleration * Time.deltaTime);
@@ -50,5 +64,24 @@ public class Ship : MonoBehaviour
 
         transform.position += transform.forward * activeFowardSpeed * Time.deltaTime;
         transform.position += transform.up * activeHoverSpeed * Time.deltaTime;
+    }
+
+    float RealAngle(Vector3 from, Vector3 to)
+    {
+        Vector3 right = Vector3.right;
+        Vector3 vectorDirection = to - from;
+
+        float angle = Vector3.Angle(right, vectorDirection);
+
+        resultAngle = angle;
+
+        Vector3 cross = Vector3.Cross(right, vectorDirection);
+
+        if (cross.y < 0)
+        {
+            angle = 360 - angle;
+        }
+
+        return angle;
     }
 }

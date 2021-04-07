@@ -46,7 +46,6 @@ public class MyCamera : MonoBehaviour
             col.gameObject.GetComponent<Renderer>().material = alphaMaterial;
         }
     }
-
     void LateUpdate()
     {
         if (firstRun)
